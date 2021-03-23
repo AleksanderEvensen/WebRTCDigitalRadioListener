@@ -3,12 +3,14 @@ import styled from 'styled-components';
 
 interface IInputFieldProps {
     onChange?:React.ChangeEventHandler<HTMLInputElement>;
+    onKeyDown?:React.KeyboardEventHandler<HTMLInputElement>;
 }
+
 
 
 const MyInput = styled.input`
     background-color:#FFF;
-    padding:0.3em;
+    padding:0.4em;
     border-radius: 0.5em;
     outline:none;
     border:none;
@@ -19,7 +21,7 @@ const MyInput = styled.input`
 
 const InputField = (props:IInputFieldProps) => {
     return (
-        <MyInput type="text" onChange={props.onChange} ></MyInput>
+        <MyInput type="text" onChange={props.onChange} onKeyDown={props.onKeyDown} />
     )
 }
 
