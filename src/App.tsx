@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import './App.css';
-import InputField from './components/InputField';
 
 interface AppProps {
     test?:string
@@ -41,6 +40,18 @@ const FreqDisplay = styled.p`
     margin-left: 2em;
     padding:0;
 `;
+
+
+const InputField = styled.input`
+    background-color:#FFF;
+    padding:0.4em;
+    border-radius: 0.5em;
+    outline:none;
+    border:none;
+    :focus {
+        outline:none;
+    }
+`
 
 
 
