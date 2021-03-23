@@ -38,7 +38,7 @@ const AppTitle = styled.div`
     width:100%;
     text-align: center;
     color:white;
-    font: 1.7em Montserrat;
+    font: 3em Montserrat;
     margin: 1em 0px;
 `;
 
@@ -53,7 +53,7 @@ const HorizontalContainer = styled.div`
 
 const FreqDisplay = styled.p`
     color: white;
-    font: 1.3em Montserrat;
+    font: 2.4em Montserrat;
     margin:0;
     margin-left: 2em;
     padding:0;
@@ -62,6 +62,7 @@ const FreqDisplay = styled.p`
 
 const InputField = styled.input`
     background-color:#FFF;
+    font: 1.5em Montserrat;
     padding:0.4em;
     border-radius: 0.5em;
     outline:none;
@@ -87,7 +88,7 @@ const Button = styled.button<IButtonProps>`
     border-radius: 0.3em;
     outline:none;
     border:none;
-    font: ${p => p?.font || '0.8em Montserrat'};
+    font: ${p => p?.font || '1.5em Montserrat'};
     :focus {
         outline:none;
     }
@@ -122,10 +123,18 @@ function App({}: AppProps) {
 
     function FreqKeyInputHandler(event: React.KeyboardEvent<HTMLInputElement>):void {
         const AllowedKeys = ['Backspace', 'Alt', 'Control', 'ArrowLeft', 'ArrowRight'];
+        
         if (parseInt(event.key) == NaN && !AllowedKeys.includes(event.key))
             event.preventDefault();
     }
 
+    function ConnectToChannel() {
+        setConnection(frequency);
+    }
+
+    function DisconnectFromChannel() {
+        setConnection(0)
+    }
 
 
     return (
@@ -146,8 +155,8 @@ function App({}: AppProps) {
                 <FreqDisplay>{connection} Hz</FreqDisplay>
             </HorizontalContainer>
             <HorizontalContainer>
-               <Button disabled={connection > 0} bgColor="#2ecc71">Connect</Button> 
-               <Button disabled={connection <= 0} bgColor="#e74c3c">Disconnect</Button> 
+               <Button onClick={ConnectToChannel} disabled={connection > 0} bgColor="#2ecc71">Connect</Button> 
+               <Button onClick={DisconnectFromChannel} disabled={connection <= 0} bgColor="#e74c3c">Disconnect</Button> 
             </HorizontalContainer>
         </MainForm>
     )
